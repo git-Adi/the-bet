@@ -43,7 +43,7 @@ The secret key unlocks a new attempt each time — up to `maxAttempts` total. On
 | `boardSize` | `4` | grid dimension → total tiles = `boardSize²` (4 = 16 tiles) |
 | `requiredCorrectTiles` | `4` | how many HER tiles exist on the board — she must reveal all of them to win |
 | `totalLives` | `3` | lives per attempt |
-| `maxAttempts` | `5` | first attempt + up to 4 secret-key recoveries; last loss becomes final |
+| `maxAttempts` | `10` | first attempt + up to 9 secret-key recoveries; last loss becomes final |
 | `herTileRatio` | `[0, 0]` | legacy; the board now places exactly `requiredCorrectTiles` HER tiles |
 
 ## Reset the game (dev only)
