@@ -49,12 +49,12 @@ The secret key unlocks a new attempt each time — up to `maxAttempts` total. On
 ## Reset the game (dev only)
 
 - Add `?resetGame=true` to the URL, or
-- Open devtools → Application → Local Storage → delete `the-bet:v4`, or
+- Open devtools → Application → Local Storage → delete `the-bet:v6`, or
 - Paste `localStorage.clear()` into the console.
 
 ## Persisted state
 
-Stored in `localStorage` under `the-bet:v4`:
+Stored in `localStorage` under `the-bet:v6`:
 - `phase`, `attemptNumber`, `livesRemaining`, `correctCount`
 - `tiles` (the generated board for this attempt)
 - `seed`, `recoveryKeyUsed`, `gameLocked`, `initialAttemptPlayed`

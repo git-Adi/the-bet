@@ -4,7 +4,7 @@ import { PersistedGameState, Tile } from "../types/game";
 import { createSeed, generateBoard } from "../utils/board";
 import { useLocalStorage } from "./useLocalStorage";
 
-const STORAGE_KEY = "the-bet:v5";
+const STORAGE_KEY = "the-bet:v6";
 
 function makeFreshState(attempt: number, priorRecoveryUsed: boolean): PersistedGameState {
   const seed = createSeed();

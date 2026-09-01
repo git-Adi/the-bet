@@ -23,12 +23,25 @@ export function generateBoard(seed: number): Tile[] {
   const rand = mulberry32(seed);
   const herCount = gameConfig.requiredCorrectTiles;
 
-  const indices = Array.from({ length: total }, (_, i) => i);
-  for (let i = indices.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));
-    [indices[i], indices[j]] = [indices[j], indices[i]];
+  // Softer pattern: exactly one HER tile in each row and each column
+  // (a random permutation) whenever herCount matches the board size.
+  // Otherwise fall back to a pure random pick.
+  let herTileIndices: number[];
+  if (herCount === size) {
+    const cols = Array.from({ length: size }, (_, i) => i);
+    for (let i = cols.length - 1; i > 0; i--) {
+      const j = Math.floor(rand() * (i + 1));
+      [cols[i], cols[j]] = [cols[j], cols[i]];
+    }
+    herTileIndices = cols.map((col, row) => row * size + col);
+  } else {
+    const indices = Array.from({ length: total }, (_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(rand() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    herTileIndices = indices.slice(0, herCount);
   }
-  const herTileIndices = indices.slice(0, herCount);
   const herSet = new Set(herTileIndices);
 
   // Assign each HER tile a distinct photo (cycled if there are more tiles than photos).
